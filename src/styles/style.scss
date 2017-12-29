@@ -684,7 +684,7 @@ header{
 #skillsPanel{
 	position: relative;
 	border:2px solid $monoDarker;
-	padding: 0 0.75rem 0.5rem .75rem;
+	padding: 0 0.75rem 0 .75rem;
 	border-radius:8px;
 }
 .skillsPanelLabel{
@@ -703,12 +703,28 @@ header{
 #skillsTitle{
 	height:20px;
 }
+#skillsTitle + #charSkills{
+	transition: all 0.2s ease;	
+	opacity:1;
+}
+#skillsTitle:checked + #charSkills{
+	height: 0px;
+	overflow:hidden;
+	margin:0;
+	padding-bottom:0;
+	opacity:0;
+}
+.skillsPanelLabel{
+	user-select: none;
+	cursor: pointer;
+}
 #charSkills{
 	display:grid;
 	grid-template-columns: repeat(5, auto) ;
 	grid-row-gap: 0.5rem;
 	grid-column-gap: 0.5rem;
 	margin: 0.6rem 0 0.4rem 0;
+	padding-bottom:0.4rem;
 	.skillGroup{
 
 	
