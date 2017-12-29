@@ -1,0 +1,819 @@
+article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary{display:block;}audio,canvas,video{display:inline-block;}audio:not([controls]){display:none;height:0;}[hidden]{display:none;}html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}a:focus{outline:thin dotted;}a:active,a:hover{outline:0;}h1{font-size:2em;}abbr[title]{border-bottom:1px dotted;}b,strong{font-weight:700;}dfn{font-style:italic;}mark{background:#ff0;color:#000;}code,kbd,pre,samp{font-family:monospace, serif;font-size:1em;}pre{white-space:pre-wrap;word-wrap:break-word;}q{quotes:\201C \201D \2018 \2019;}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sup{top:-.5em;}sub{bottom:-.25em;}img{border:0;}svg:not(:root){overflow:hidden;}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em;}button,input,select,textarea{font-family:inherit;font-size:100%;margin:0;}button,input{line-height:normal;}button,html input[type=button],/* 1 */
+input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}button[disabled],input[disabled]{cursor:default;}input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0;}input[type=search]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none;}textarea{overflow:auto;vertical-align:top;}table{border-collapse:collapse;border-spacing:0;}body,figure{margin:0;}legend,button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}
+
+.clearfix:after {visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
+
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+@font-face{
+	font-family: "elephant", serif;
+	src: url('../../assets/elephant.ttf');
+}
+@font-face {
+	font-family: "moria", serif;
+	src: url('../../assets/moria.ttf');
+}
+
+/* Edit/ Add notes only messes up when window width is not forcing width change on textarea*/
+
+	$monoDarkest: #0E0E0E;
+	$monoDarker: #424242;
+	$monoMid: #898989;
+	$monoLighter: #C4C4C4;
+	$monoLightest: #E9E9E9;
+	$bgColor: white;
+
+$spaceMed: 1.5rem;
+h1,h2,h3,h4,h5,h6{
+	margin:0;
+}
+#app {
+}
+#wrapper{
+	display:flex;
+	padding:2em 0em;
+	height:auto;
+}
+#mainBlock{
+	// min-height:100vh;
+	display:flex;
+	flex-direction:column;
+	position:relative;
+	width:100%;
+	padding:0 2rem 0 2rem ;
+	max-width: 1400px;
+	margin:0 auto;
+	// border-right:1px solid$monoLighter;
+	height:100%;
+	header{
+		flex-wrap:wrap;
+	}
+	section{
+		position:relative;
+		flex-grow:1;
+	}
+	#loginNav{
+		display:flex;
+		flex-direction:row;
+	}
+}
+#sideBlock{
+	display:flex;
+	flex-direction:column;
+	width:430px;
+	padding:0 2rem;
+	height:100%;
+	form{
+		display:flex;
+		flex-direction:column;
+		input{
+			background-color: transparent;
+			border:1px solid $monoDarker;
+			border-radius:4px;
+			padding:0.5rem 1rem;
+			outline:none;
+			margin-bottom:1rem;
+		}
+	}
+	nav{
+		ul{
+			display:flex;
+			li{
+				list-style: none;
+				margin-right:2rem;
+			}
+		}
+	}
+	p{
+		margin: auto;
+		color:#c4c4c4;
+	}
+}
+a, button{
+	transition: all 0.2s ease;
+}
+.knowtHeader{
+	text-decoration: none;
+	color:$monoDarker;
+	font-family: 'elephant';
+	font-size:2rem;
+	vertical-align: bottom;
+	text-decoration: none;
+	color:$monoDarker;
+	margin-right:2rem;
+	&:hover{
+		outline:none;
+		color: $monoMid;
+	}
+	&:focus{
+		outline:none;
+		color:$monoDarker;
+	}
+}
+header{
+	display:flex;
+	justify-content: space-between;
+	margin:0 0 1rem 0;
+	align-items:center;
+}
+#newNote{
+	min-height:300px;
+	height: 100%;
+	position: relative;
+	width:100%;
+	display:flex;
+	flex-direction:column;
+	padding:1rem;
+	border:1px solid $monoDarker;
+	border-radius:4px;
+	label{
+		color:$monoLighter;
+	}
+	input, select, .statVal{
+		width:100%;
+		outline:none;
+		color: $monoDarker;
+		padding:0.35rem 0rem 0.4rem 0rem;
+		border:none;
+		font-size:2rem;
+		border-bottom:1px solid $monoLighter;
+	}
+	.charInfo{
+		width:100%;
+		outline:none;
+		color: $monoDarker;
+		padding:0.35rem 0rem 0.4rem 0rem;
+		border:none;
+		font-size:2rem;
+		font-weight:700;
+		border-bottom:1px solid $monoLightest;
+	}
+	#contentText{
+		height:auto;
+		resize: none;
+		font-size:1.2rem;
+		line-height:1.7;
+		padding: 1rem 0;
+		border:none;
+		outline:none;
+		color:$monoDarker;
+		width:100%;
+		overflow:scroll;
+	}
+	input[type=submit]{
+		font-size:1.2rem;
+		background: $monoLightest;
+		padding:0.6rem;
+		border:none;
+		outline:none;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		border-bottom-left-radius: 4px;
+		border-bottom-right-radius: 4px;
+		transition: background 0.2s ease;
+		&:hover{
+			background:$monoLighter;
+			color:$monoDarker;
+		}
+	}
+	#charInfo{
+		width:100%;
+		font-size:1rem;
+		margin-bottom:1rem;
+		display:grid;
+		grid-column-gap: 1em;
+		grid-template-columns: repeat(4, 1fr);
+		grid-template-rows: auto;
+		grid-template-areas: 
+		  "name name level exp"
+		  "race class background alignment";
+		input, select, .statVal, .charInfo{
+			display:inline-block;
+			font-size:1.2rem;
+			outline:none;
+		}
+		label{
+			text-align: left;
+		}
+		*[name=charName],*[name=editCharName],.viewCharName{
+			font-weight:700;
+			font-size:1.5rem;
+		}
+	}
+	.cName{grid-area: name;}
+	.cLevel{
+		grid-area: level;
+		.ILInput{
+			text-align: center;
+		}
+	}
+	.cExp{
+		grid-area: exp;
+		.ILInput{
+			text-align: center;
+		}
+	}
+	.cRace{grid-area: race;}
+	.cClass{grid-area: class;}
+	.cBackg{grid-area: background;}
+	.cAlign{grid-area: alignment;}
+	.ILGroup{
+		position:relative;
+		margin-bottom: 0.3rem;
+		// width: calc((100% / 2) - 16px);
+		display: inline-block;
+		&>*{
+			transition: all 0.2s ease;
+		}
+		input, label, select{
+			// background-color:transparent;
+		}
+		select{
+			-webkit-appearance: none;
+			-moz-appearance: none;
+		}
+		select.ILInput{	
+			background-image:
+			linear-gradient(45deg, transparent 50%, $monoLighter 50%),
+			linear-gradient(135deg, $monoLighter 50%, transparent 50%);
+			background-position:
+			calc(100% - 16px) calc(1.2em + 2px),
+			calc(100% - 8px) calc(1.2em + 2px),
+			calc(100% - 2.5em) 0.5em;
+			background-size:
+			8px 8px,
+			8px 8px,
+			1px 1.5em;
+			background-repeat: no-repeat;
+		}
+		.ILInput:hover{
+			border-color:$monoDarker;
+			color:$monoDarker;
+		}
+		select.ILInput:hover {
+			background-image:
+			linear-gradient(45deg, $monoDarker 50%, transparent 50%),
+			linear-gradient(135deg, transparent 50%, $monoDarker 50%);
+			background-position:
+			calc(100% - 8px) 1.2em,
+			calc(100% - 16px) 1.2em,
+			calc(100% - 2.5em) 0.5em;
+			background-size:
+			8px 8px,
+			8px 8px,
+			1px 1.5em;
+			background-repeat: no-repeat;
+			border-color: $monoDarker;
+			outline: 0;
+		}
+		select.ILInput:focus {
+			background-image:
+			linear-gradient(45deg, $monoDarker 50%, transparent 50%),
+			linear-gradient(135deg, transparent 50%, $monoDarker 50%);
+			background-position:
+			calc(100% - 8px) 1.2em,
+			calc(100% - 16px) 1.2em,
+			calc(100% - 2.5em) 0.5em;
+			background-size:
+			8px 8px,
+			8px 8px,
+			1px 1.5em;
+			background-repeat: no-repeat;
+			border-color: $monoDarker;
+			outline: 0;
+		}
+		select:focus + label, select:hover + label, .ILInput:hover + .ILLabel {
+			color: $monoDarker;
+		}
+		.ILInput{
+			position: relative;
+			background:transparent;
+			padding: 0.75rem 0 0.5rem 0.3rem;
+			height: 2.938rem; //!bugfix
+		}
+		.ILLabel{
+			position:absolute;
+			bottom:-3px;
+			left:1rem;
+			padding: 0 0.3rem;
+			background:$bgColor;
+			line-height:6px;
+			text-transform: uppercase;
+			font-size:.9rem;
+			color:$monoLighter;
+		}
+	}
+	.cName{
+		// width:100% !important;
+		// display:block !important;
+	}
+}
+#charStats{
+	display:grid;
+	grid-template-columns: repeat(6, 1fr);
+	grid-template-rows: auto auto auto;
+	grid-column-gap: 6px;
+	label, input, .statMod, .statVal{
+		position:relative;
+		text-align: center;
+	}
+	label{
+		// margin-top:0.75rem;
+		z-index:1;
+		color:$monoLightest;
+		padding:2px;
+		background: $monoDarker;
+		// border-top-left-radius: 1px;
+		// border-top-right-radius: 1px;
+	}
+	input, .statVal{
+		z-index:0;
+		border: 2px solid $monoDarker;
+		border-radius:8px;
+		padding-top:1rem;
+		padding-bottom:1rem;
+		top:-10px;
+		background:none;
+	}
+	.statMod{
+		top: -25px;
+		color: $monoDarker;
+		background:white;
+		padding:0.2rem 0.3rem;;
+		border: 2px solid $monoDarker;
+		border-radius:14px;
+		width:66%;
+		margin:auto;
+		font-size:1.1rem;
+	}
+}
+#noteItem{
+	border: 2px solid $monoDarker;
+	border-radius: 4px;
+	box-shadow: 0 8px 8px rgba(0,0,0,.1);
+	width:100%;
+	padding:1rem;
+}
+#noteGrid{
+	position:relative;
+	top:0;right:-2rem;left:0;
+	display:flex;
+	flex-wrap:wrap;
+	align-items:left;
+	height:100%;
+	margin: -1rem 0 0 -1rem;
+	padding-right:1.5rem;
+	overflow-y:scroll;
+	align-content:flex-start;
+	h2{
+		flex-basis:100%;
+		width:100%;
+		margin-bottom: 0.5rem;
+	}
+	#charStats{
+		grid-template-columns: repeat(6, 1fr);
+		grid-column-gap: 4px;
+		height: 95px;
+		overflow: hidden;
+		label{
+			margin:0;
+			z-index:1;
+			color:$monoLightest;
+			padding:2px;
+			background: $monoDarker;
+			border-top-left-radius: 2px;
+			border-top-right-radius: 2px;
+		}
+		.statBlock{
+			z-index:0;
+			position: relative;
+			text-align: center;
+			font-size:1.3rem;
+			border: 2px solid $monoDarker;
+			border-radius:8px;
+			padding-top:1rem;
+			padding-bottom:1rem;
+			top:-10px;
+			background:none;
+			width:100%;
+		}
+		.statMod{
+		}
+	}
+}
+.noteGridItem--container{
+	transition: all 0.2s ease;
+	position:relative;
+	padding: 1rem 0 0 1rem;
+	display:block;
+	flex-basis:33%;
+	min-width:33%;
+
+}
+.noteActions{
+	z-index:11;
+	display:flex;
+	flex-grow:1;
+	justify-content: center;
+	transition:all 0.3s ease;
+	visibility:hidden;
+	position:absolute;
+	bottom:0;left:0;right: 0;
+	opacity:0;
+	font-size:1rem;
+	font-weight:400;
+	border:none;
+	background:$monoLightest;
+	padding:0.5rem;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	button{
+		height: 2.5rem;
+	    width: 2.5rem;
+	    border-radius: 4px;
+		margin-right:0.5rem;
+		font-size:1rem;
+		font-weight:400;
+		border:none;
+		background-color: transparent;
+	}
+}
+.noteGridItem{
+	cursor:pointer;
+	transition: all 0.2s ease;
+	position: relative;
+	display:flex;
+	flex-direction: column;
+	padding:1rem;
+	border:1px solid $monoDarker;
+	border-radius:4px;
+	width: 100%;	
+	height:230px;
+	box-shadow:0px 4px 8px rgba(0,0,0,0.2);
+	background:#fff;
+	.contentWrapper{
+		transition: all 0.2s ease;
+		position: relative;
+		display:flex;
+		flex-direction: column;
+		width:100%;
+		p{
+			white-space: pre-wrap;
+		}
+	}
+	h3{
+		color: $monoDarker;
+		font: size 1.5rem;
+		border-bottom:1px solid$monoLighter;
+		word-wrap: break-word;
+		min-height:2rem;
+		overflow-y:hidden;
+		vertical-align: bottom;
+	}
+	p{
+		position:relative;
+		width:100%;
+		word-wrap: break-word;
+		margin:0;
+		font-size:1.1rem;
+		padding:0.75rem 0;
+		overflow-y:hidden;
+	}
+	&:hover , &:focus{
+		transform: scale(1.05);
+		.noteActions{
+			visibility: visible;
+			opacity:1;
+		}
+	}
+}
+.noteGridItem--container:last-child{
+	padding-bottom:1rem;
+}
+.inputContainer{
+	// position:relative;
+	height:100%;
+	// margin-bottom:1rem;
+	// padding:1rem 0;
+	border-bottom:1px solid $monoLighter;
+}
+.pOverlay{
+	pointer-events:none;
+	position:absolute;
+	bottom:0;
+	left:0;
+	right:0;
+	height:3rem;
+	background: linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0.7),rgba(255,255,255,1));
+}
+.AddNoteLink{
+	flex-basis:33%;
+	width:33%;
+	color:transparent;
+}
+
+.addNoteCard--Item{
+	background:$monoLightest;
+}
+.addNoteCard--Container{
+	height:100%;
+}
+.addNoteCard--inner{
+	display:flex;
+	height:100%;
+	i{
+		font-size:5rem;
+		color:#c4c4c4;
+		margin:auto auto;
+	}
+}
+#toolbar{
+	box-sizing: border-box;
+	width:100%;
+	padding:0 1rem;
+	margin:0.5rem 0;
+	display: grid;
+	grid-template-columns: repeat(5,72px);
+	grid-gap: 6px;
+}
+#toolbar .AddNoteLink{
+	width: auto;
+	height: auto;
+}
+#toolbar .noteGridItem--container,
+#toolbar .addNoteCard--Container {
+	padding: 0em;
+}
+#toolbar .addNoteCard--Item{
+	height:auto;
+}
+#toolbar .addNoteCard--inner{
+	display:flex;
+	height:100%;
+	img{
+		height: 32px;
+		text-align: center;
+		vertical-align: middle;
+		margin: auto;
+	}
+	i{
+		font-size: 38px;
+		color: #c4c4c4;
+		margin: auto auto;
+		height: 32px;
+		text-align: center;
+		vertical-align: middle;
+		line-height: 90%;
+	}
+}
+*::-webkit-scrollbar-track
+{
+	background-color: transparent;
+}
+
+*::-webkit-scrollbar
+{
+	width: .5rem;
+	border-radius:500px;
+}
+*::-webkit-scrollbar-thumb
+{
+	border-radius: 100px;
+	background-color:$monoLighter;
+	width:1rem;
+}
+.actionRemoveNote:hover {
+	background:pink;
+	i{
+		color:red;
+	}
+}
+.actionEditNote:hover {
+	background:rgb(236, 213, 2);
+	i{
+		color:rgb(180, 102, 0);
+	}
+}
+.actionViewChar:hover {
+	background:lightgreen;
+	i{
+		color:green;
+	}
+}
+#loginContainer{
+	display:flex;
+	flex-direction:row;
+	flex-wrap:wrap;
+	#loginNav button, li a, .loginButton, .user-form>input {
+		text-decoration: none;
+		color:$monoMid;
+		padding: 0.5rem 1rem;
+		border:1px solid $monoMid;
+		border-radius:4px;
+		margin: auto;
+		background:#fff;
+		margin-right:1rem;
+		&:hover{
+			outline:none;
+			color:$monoDarker;
+			border-color:$monoDarker;
+		}
+		&:focus{
+			outline:none;
+		}
+	}
+	.user-form{
+		border-left: 1px solid $monoMid;
+		padding-left:1rem;
+		input{
+			width:190px;
+		}
+		.loginButton{
+			background:$monoLightest;
+			color:$monoDarker;
+		}
+		label{
+			display:none;
+		}
+
+	}
+}
+#loginContainer #loginNav #logoutBtn{
+	margin-right:0;
+}
+#savingThrows{
+	ul{
+		margin: 0;
+		padding:0;
+		display:grid;
+		grid-template-columns: repeat(6, 1fr);
+		grid-template-rows: auto auto auto;
+		grid-column-gap: 6px;
+		li{
+			display:inline-block;
+			border:2px solid $monoDarker;
+			border-bottom-left-radius: 0px;
+			border-bottom-right-radius: 0px;
+			border-top-left-radius: 8px;
+			border-top-right-radius: 8px;
+			margin:0;
+			text-align: center;
+			&:last-child{
+				margin-right:0;
+			}
+			label{
+				
+				color: $monoLightest;
+				display:block;
+				background: $monoDarker;
+				display:none;
+			}
+			input{
+				background:transparent;
+				border:none;
+				outline:none;
+				text-align: center;
+				font-size:1.5rem;
+				line-height:100%;
+			}
+		}
+	}
+}
+/* Portrait tablet and small desktops */
+@media (max-width: 1200px) {
+
+	#noteGrid #charStats{
+		grid-template-columns: repeat(6, 1fr);
+		grid-column-gap: 2px;
+		height: 95px;
+		overflow: hidden;
+		label{
+			margin:0;
+			z-index:1;
+			color:$monoLightest;
+			padding:2px;
+			background: $monoDarker;
+			border-top-left-radius: 2px;
+			border-top-right-radius: 2px;
+		}
+		.statBlock{
+			z-index:0;
+			position: relative;
+			text-align: center;
+			font-size:1.3rem;
+			border: 2px solid $monoDarker;
+			border-radius:8px;
+			padding-top:1rem;
+			padding-bottom:1rem;
+			top:-10px;
+			background:none;
+			width:100%;
+		}
+		.statMod{
+			width:100%;
+		}
+	}
+}
+
+/* Portrait tablet and small desktops */
+@media (max-width: 960px) {
+	.AddNoteLink, .noteGridItem--container{
+		flex-basis:50%;
+		min-width:50%;
+	}
+}
+/* Landscape phone to portrait tablet */
+@media (max-width: 780px) {
+	#wrapper{
+		padding:0.5rem 0;
+	}
+	.AddNoteLink, .noteGridItem--container{
+		flex-basis:50%;
+		min-width:50%;
+	}
+	#noteGrid{
+		right:-2rem;
+		position: relative;
+		padding-right: 0rem;
+		overflow-y: unset;
+	}
+	#mainBlock #loginNav {
+		width:100%;
+		button{
+			width:100%;
+			margin:auto;
+		}
+	}
+	#NewNote{
+		margin-bottom:1rem;
+		padding-right: 1.5rem;
+	}
+	#loginNav{
+		order:3;
+	}
+
+	#loginContainer{
+		display:flex;
+		flex-direction:row;
+		flex-wrap:wrap;
+		li{
+			margin:1.5rem 0;
+		}
+		.user-form{
+			border:none;
+			border-bottom:1px solid $monoMid;
+			padding-left:0;
+			padding-bottom:1.5rem;
+			width:100%;
+			label{
+				display:none;
+			}
+			input,.loginButton{
+				margin:0.5rem 0.5rem 0 0;
+				padding: 0.5rem 1rem;
+				width:100%;
+			}
+		}
+	}
+	#charInfo{
+		grid-template-columns: repeat(12, 1fr) !important;
+		grid-template-rows: auto;
+		grid-template-areas: 
+		  "name name name name name name name name name level level level"
+		  "exp exp race race race race race class class class class class"
+		  "background background background background background background alignment alignment alignment alignment alignment alignment" !important;
+		  .ILInput{
+			  font-size:1.1rem !important;
+		  }
+		  .cName .ILInput{
+			  font-size:1.3rem !important;
+		  }
+		  .cLevel .ILLabel{
+			  text-align: center !important;
+		  }
+	}
+}
+/* Landscape phones and down */
+@media (max-width: 600px) {
+	.knowtHeader{
+		font-size:1.5rem;
+	}
+	#mainBlock{
+		padding: 0 1rem;
+	}
+	.AddNoteLink, .noteGridItem--container{
+		flex-basis:100%;
+		min-width:100%;
+	}
+	#noteGrid #charStats .statMod {
+		width: 66%;
+	}
+}
+@media (max-width: 400px) {
+	.knowtHeader{
+		font-size:1rem;
+	}
+	#noteGrid #charStats .statMod {
+		width: 100%;
+	}
+}
