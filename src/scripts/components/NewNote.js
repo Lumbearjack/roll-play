@@ -30,7 +30,99 @@ class NewNote extends React.Component{
 			saveCON:"",
 			saveINT:"",
 			saveWIS:"",
-			saveCHA:""
+			saveCHA:"",
+			skills:{
+				Acrobatics:{
+					name: "Acrobatics",
+					stat:["Dexterity", "DEX"],
+					num:""
+				},
+				AnimalHandling:{
+					name: "Animal Handling",
+					stat:["Wisdom", "WIS"],
+					num:""
+				},
+				Arcana:{
+					name: "Arcana",
+					stat:["Intelligence", "INT"],
+					num:""
+				},
+				Athletics:{
+					name: "Athletics",
+					stat:["Strength", "STR"],
+					num:""
+				},
+				Deception:{
+					name: "Deception",
+					stat:["Charisma", "CHA"],
+					num:""
+				},
+				History:{
+					name: "History",
+					stat:["Intelligence", "INT"],
+					num:""
+				},
+				Insight:{
+					name: "Insight",
+					stat:["Wisdom", "WIS"],
+					num:""
+				},
+				Intimidation:{
+					name: "Intimidation",
+					stat:["Charisma", "CHA"],
+					num:""
+				},
+				Investigation:{
+					name: "Investigation",
+					stat:["Intelligence", "INT"],
+					num:""
+				},
+				Medicine:{
+					name: "Medicine",
+					stat:["Wisdom", "WIS"],
+					num:""
+				},
+				Nature:{
+					name: "Nature",
+					stat:["Intelligence", "INT"],
+					num:""
+				},
+				Perception:{
+					name: "Perception",
+					stat:["Wisdom", "WIS"],
+					num:""
+				},
+				Performance:{
+					name: "Performance",
+					stat:["Charisma", "CHA"],
+					num:""
+				},
+				Persuasion:{
+					name: "Persuasion",
+					stat:["Charisma", "CHA"],
+					num:""
+				},
+				Religion:{
+					name: "Religion",
+					stat:["Intelligence", "INT"],
+					num:""
+				},
+				SleightOfHand:{
+					name: "Sleight of Hand",
+					stat:["Dexterity", "DEX"],
+					num:""
+				},
+				Stealth:{
+					name: "Stealth",
+					stat:["Dexterity", "DEX"],
+					num:""
+				},
+				Survival:{
+					name: "Survival",
+					stat:["Wisdom", "WIS"],
+					num:""
+				}
+			}	
 		}
 		this.addNote = this.addNote.bind(this);
 		this.handleChange = this.handleChange.bind(this);
@@ -103,6 +195,10 @@ class NewNote extends React.Component{
 		else{
 			return Math.floor((stat - 10) / 2);
 		}
+	}
+	createSkillList(skills){
+
+		
 	}
 	render(){
 		return(
@@ -223,8 +319,83 @@ class NewNote extends React.Component{
 					<div className="statMod" id="modWis" ref={ref => this.modWIS = ref} onChange={this.handleChange}>{this.calcMod(this.state.statWIS)}</div>
 					<div className="statMod" id="modCha" ref={ref => this.modCHA = ref} onChange={this.handleChange}>{this.calcMod(this.state.statCHA)}</div>
 				</div>
-				
-				
+				<div id="skillsPanel">
+					<label className="skillsPanelLabel" htmlFor="skillsTitle">Skills</label><input name="skillsTitle" type="checkbox" id="skillsTitle"/>
+					<div id="charSkills">
+					<div className="skillGroup">
+						<div name="skillAcrobatics" className="charSkills--skill" ref={ref => this.state.skills.Acrobatics.num = ref} onChange={this.handleChange}>{this.calcMod(this.state.statDEX)}</div>
+						<label htmlFor="skillAcrobatics">{this.state.skills.Acrobatics.name}&nbsp;<span className="skillType">({this.state.skills.Acrobatics.stat[1]})</span></label>
+					</div>
+					<div className="skillGroup">
+						<div name="skillAnimalHandling" className="charSkills--skill" ref={ref => this.state.skills.AnimalHandling.num = ref} onChange={this.handleChange}>{this.calcMod(this.state.statWIS)}</div>
+						<label htmlFor="skillAnimalHandling">{this.state.skills.AnimalHandling.name}&nbsp;<span className="skillType">({this.state.skills.AnimalHandling.stat[1]})</span></label>
+					</div>
+					<div className="skillGroup">
+						<div name="skillArcana" className="charSkills--skill" ref={ref => this.state.skills.Arcana.num = ref} onChange={this.handleChange}>{this.calcMod(this.state.statINT)}</div>
+						<label htmlFor="skillArcana">{this.state.skills.Arcana.name}&nbsp;<span className="skillType">({this.state.skills.Arcana.stat[1]})</span></label>
+					</div>
+					<div className="skillGroup">
+						<div name="skillAthletics" className="charSkills--skill" ref={ref => this.state.skills.Athletics.num = ref} onChange={this.handleChange}>{this.calcMod(this.state.statSTR)}</div>
+						<label htmlFor="skillAthletics">{this.state.skills.Athletics.name}&nbsp;<span className="skillType">({this.state.skills.Athletics.stat[1]})</span></label>
+					</div>
+					<div className="skillGroup">
+						<div name="skillDeception" className="charSkills--skill" ref={ref => this.state.skills.Deception.num = ref} onChange={this.handleChange}>{this.calcMod(this.state.statCHA)}</div>
+						<label htmlFor="skillDeception">{this.state.skills.Deception.name}&nbsp;<span className="skillType">({this.state.skills.Deception.stat[1]})</span></label>
+					</div>
+					<div className="skillGroup">
+						<div name="skillHistory" className="charSkills--skill" ref={ref => this.state.skills.History.num = ref} onChange={this.handleChange}>{this.calcMod(this.state.statINT)}</div>
+						<label htmlFor="skillHistory">{this.state.skills.History.name}&nbsp;<span className="skillType">({this.state.skills.History.stat[1]})</span></label>
+					</div>
+					<div className="skillGroup">
+						<div name="skillInsight" className="charSkills--skill" ref={ref => this.state.skills.Insight.num = ref} onChange={this.handleChange}>{this.calcMod(this.state.statWIS)}</div>
+						<label htmlFor="skillInsight">{this.state.skills.Insight.name}&nbsp;<span className="skillType">({this.state.skills.Insight.stat[1]})</span></label>
+					</div>
+					<div className="skillGroup">
+						<div name="skillIntimidation" className="charSkills--skill" ref={ref => this.state.skills.Intimidation.num = ref} onChange={this.handleChange}>{this.calcMod(this.state.statCHA)}</div>
+						<label htmlFor="skillIntimidation">{this.state.skills.Intimidation.name}&nbsp;<span className="skillType">({this.state.skills.Intimidation.stat[1]})</span></label>
+					</div>
+					<div className="skillGroup">
+						<div name="skillInvestigation" className="charSkills--skill" ref={ref => this.state.skills.Investigation.num = ref} onChange={this.handleChange}>{this.calcMod(this.state.statINT)}</div>
+						<label htmlFor="skillInvestigation">{this.state.skills.Investigation.name}&nbsp;<span className="skillType">({this.state.skills.Investigation.stat[1]})</span></label>
+					</div>
+					<div className="skillGroup">
+						<div name="skillMedicine" className="charSkills--skill" ref={ref => this.state.skills.Medicine.num = ref} onChange={this.handleChange}>{this.calcMod(this.state.statWIS)}</div>
+						<label htmlFor="skillMedicine">{this.state.skills.Medicine.name}&nbsp;<span className="skillType">({this.state.skills.Medicine.stat[1]})</span></label>
+					</div>
+					<div className="skillGroup">
+						<div name="skillNature" className="charSkills--skill" ref={ref => this.state.skills.Nature.num = ref} onChange={this.handleChange}>{this.calcMod(this.state.statINT)}</div>
+						<label htmlFor="skillNature">{this.state.skills.Nature.name}&nbsp;<span className="skillType">({this.state.skills.Nature.stat[1]})</span></label>
+					</div>
+					<div className="skillGroup">
+						<div name="skillPerception" className="charSkills--skill" ref={ref => this.state.skills.Perception.num = ref} onChange={this.handleChange}>{this.calcMod(this.state.statWIS)}</div>
+						<label htmlFor="skillPerception">{this.state.skills.Perception.name}&nbsp;<span className="skillType">({this.state.skills.Perception.stat[1]})</span></label>
+					</div>
+					<div className="skillGroup">
+						<div name="skillPerformance" className="charSkills--skill" ref={ref => this.state.skills.Performance.num = ref} onChange={this.handleChange}>{this.calcMod(this.state.statCHA)}</div>
+						<label htmlFor="skillPerformance">{this.state.skills.Performance.name}&nbsp;<span className="skillType">({this.state.skills.Performance.stat[1]})</span></label>
+					</div>
+					<div className="skillGroup">
+						<div name="skillPersuasion" className="charSkills--skill" ref={ref => this.state.skills.Persuasion.num = ref} onChange={this.handleChange}>{this.calcMod(this.state.statCHA)}</div>
+						<label htmlFor="skillPersuasion">{this.state.skills.Persuasion.name}&nbsp;<span className="skillType">({this.state.skills.Persuasion.stat[1]})</span></label>
+					</div>
+					<div className="skillGroup">
+						<div name="skillReligion" className="charSkills--skill" ref={ref => this.state.skills.Religion.num = ref} onChange={this.handleChange}>{this.calcMod(this.state.statINT)}</div>
+						<label htmlFor="skillReligion">{this.state.skills.Religion.name}&nbsp;<span className="skillType">({this.state.skills.Religion.stat[1]})</span></label>
+					</div>
+					<div className="skillGroup">
+						<div name="skillSleightOfHand" className="charSkills--skill" ref={ref => this.state.skills.SleightOfHand.num = ref} onChange={this.handleChange}>{this.calcMod(this.state.statDEX)}</div>
+						<label htmlFor="skillSleightOfHand">{this.state.skills.SleightOfHand.name}&nbsp;<span className="skillType">({this.state.skills.SleightOfHand.stat[1]})</span></label>
+					</div>
+					<div className="skillGroup">
+						<div name="skillStealth" className="charSkills--skill" ref={ref => this.state.skills.Stealth.num = ref} onChange={this.handleChange}>{this.calcMod(this.state.statDEX)}</div>
+						<label htmlFor="skillStealth">{this.state.skills.Stealth.name}&nbsp;<span className="skillType">({this.state.skills.Stealth.stat[1]})</span></label>
+					</div>
+					<div className="skillGroup">
+						<div name="skillSurvival" className="charSkills--skill" ref={ref => this.state.skills.Survival.num = ref} onChange={this.handleChange}>{this.calcMod(this.state.statWIS)}</div>
+						<label htmlFor="skillSurvival">{this.state.skills.Survival.name}&nbsp;<span className="skillType">({this.state.skills.Survival.stat[1]})</span></label>
+					</div>
+					</div>
+				</div>		
 				<textarea name="charStory" ref={ref => this.charStory = ref} id="contentText"  placeholder="Write your story." onChange={this.handleChange} autoComplete="off"></textarea>
 				
 				<input type="submit" value="Save Character"/>
