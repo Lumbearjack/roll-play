@@ -13,120 +13,162 @@ class NewNote extends React.Component{
 			charAlignment:"",
 			charExperience:"",
 			charStory:"",
-			statSTR:"",
-			statDEX:"",
-			statCON:"",
-			statINT:"",
-			statWIS:"",
-			statCHA:"",
-			modSTR:"",
-			modDEX:"",
-			modCON:"",
-			modINT:"",
-			modWIS:"",
-			modCHA:"",
-			saveSTR:"",
-			saveDEX:"",
-			saveCON:"",
-			saveINT:"",
-			saveWIS:"",
-			saveCHA:"",
+			statSTR:0,
+			statDEX:0,
+			statCON:0,
+			statINT:0,
+			statWIS:0,
+			statCHA:0,
+			modSTR:0,
+			modDEX:0,
+			modCON:0,
+			modINT:0,
+			modWIS:0,
+			modCHA:0,
+			saveSTR:0,
+			saveDEX:0,
+			saveCON:0,
+			saveINT:0,
+			saveWIS:0,
+			saveCHA:0,
+			raceModSTR:0,
+			raceModDEX:0,
+			raceModCON:0,
+			raceModINT:0,
+			raceModWIS:0,
+			raceModCHA:0,
+			otherModSTR:0,
+			otherModDEX:0,
+			otherModCON:0,
+			otherModINT:0,
+			otherModWIS:0,
+			otherModCHA:0,
+			classModSTR:0,
+			classModDEX:0,
+			classModCON:0,
+			classModINT:0,
+			classModWIS:0,
+			classModCHA:0,
+			backgroundModSTR:0,
+			backgroundModDEX:0,
+			backgroundModCON:0,
+			backgroundModINT:0,
+			backgroundModWIS:0,
+			backgroundModCHA:0,
+			totalSTR:0,
+			totalDEX:0,
+			totalCON:0,
+			totalINT:0,
+			totalWIS:0,
+			totalCHA:0,
+			totalSaveSTR:0,
+			totalSaveDEX:0,
+			totalSaveCON:0,
+			totalSaveINT:0,
+			totalSaveWIS:0,
+			totalSaveCHA:0,
+			proficiency:0,
 			skills:{
 				Acrobatics:{
 					name: "Acrobatics",
 					stat:["Dexterity", "DEX"],
-					num:""
+					num:0
 				},
 				AnimalHandling:{
 					name: "Animal Handling",
 					stat:["Wisdom", "WIS"],
-					num:""
+					num:0
 				},
 				Arcana:{
 					name: "Arcana",
 					stat:["Intelligence", "INT"],
-					num:""
+					num:0
 				},
 				Athletics:{
 					name: "Athletics",
 					stat:["Strength", "STR"],
-					num:""
+					num:0
 				},
 				Deception:{
 					name: "Deception",
 					stat:["Charisma", "CHA"],
-					num:""
+					num:0
 				},
 				History:{
 					name: "History",
 					stat:["Intelligence", "INT"],
-					num:""
+					num:0
 				},
 				Insight:{
 					name: "Insight",
 					stat:["Wisdom", "WIS"],
-					num:""
+					num:0
 				},
 				Intimidation:{
 					name: "Intimidation",
 					stat:["Charisma", "CHA"],
-					num:""
+					num:0
 				},
 				Investigation:{
 					name: "Investigation",
 					stat:["Intelligence", "INT"],
-					num:""
+					num:0
 				},
 				Medicine:{
 					name: "Medicine",
 					stat:["Wisdom", "WIS"],
-					num:""
+					num:0
 				},
 				Nature:{
 					name: "Nature",
 					stat:["Intelligence", "INT"],
-					num:""
+					num:0
 				},
 				Perception:{
 					name: "Perception",
 					stat:["Wisdom", "WIS"],
-					num:""
+					num:0
 				},
 				Performance:{
 					name: "Performance",
 					stat:["Charisma", "CHA"],
-					num:""
+					num:0
 				},
 				Persuasion:{
 					name: "Persuasion",
 					stat:["Charisma", "CHA"],
-					num:""
+					num:0
 				},
 				Religion:{
 					name: "Religion",
 					stat:["Intelligence", "INT"],
-					num:""
+					num:0
 				},
 				SleightOfHand:{
 					name: "Sleight of Hand",
 					stat:["Dexterity", "DEX"],
-					num:""
+					num:0
 				},
 				Stealth:{
 					name: "Stealth",
 					stat:["Dexterity", "DEX"],
-					num:""
+					num:0
 				},
 				Survival:{
 					name: "Survival",
 					stat:["Wisdom", "WIS"],
-					num:""
+					num:0
 				}
 			}	
 		}
 		this.addNote = this.addNote.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 		this.calcMod = this.calcMod.bind(this);
+		this.applyRace = this.applyRace.bind(this);
+		this.applyClass = this.applyClass.bind(this);
+		this.statCalc = this.statCalc.bind(this);
+		this.calcProf = this.calcProf.bind(this);
+		this.calcPerception = this.calcPerception.bind(this);
 	}
 	addNote(e) {
 		e.preventDefault();
@@ -169,18 +211,18 @@ class NewNote extends React.Component{
 		this.charAlignment.value="";
 		this.charExperience.value="";
 		this.charStory.value="";
-		this.statSTR.value="";
-		this.statDEX.value="";
-		this.statCON.value="";
-		this.statINT.value="";
-		this.statWIS.value="";
-		this.statCHA.value="";
-		this.modSTR.value="";
-		this.modDEX.value="";
-		this.modCON.value="";
-		this.modINT.value="";
-		this.modWIS.value="";
-		this.modCHA.value="";
+		this.statSTR.value=0;
+		this.statDEX.value=0;
+		this.statCON.value=0;
+		this.statINT.value=0;
+		this.statWIS.value=0;
+		this.statCHA.value=0;
+		this.modSTR.value=0;
+		this.modDEX.value=0;
+		this.modCON.value=0;
+		this.modINT.value=0;
+		this.modWIS.value=0;
+		this.modCHA.value=0;
 		this.props.router.push('/');
 	}
 	handleChange(e) {
@@ -188,17 +230,197 @@ class NewNote extends React.Component{
 			[e.target.name]: e.target.value
 		});
 	}
-	calcMod(stat){
-		if(stat <= 0 || stat == null || stat == ""){
-			return 0;
+	applyRace(race){
+		this.state.statSTR -= 0;
+		this.state.statDEX -= 0;
+		this.state.statCON -= 0;
+		this.state.statINT -= 0;
+		this.state.statWIS -= 0;
+		this.state.statCHA -= 0;
+		this.state.totalSTR -= 0;
+		this.state.totalDEX -= 0;
+		this.state.totalCON -= 0;
+		this.state.totalINT -= 0;
+		this.state.totalWIS -= 0;
+		this.state.totalCHA -= 0;
+		this.state.raceModSTR = 0;
+		this.state.raceModDEX = 0;
+		this.state.raceModCON = 0;
+		this.state.raceModINT = 0;
+		this.state.raceModWIS = 0;
+		this.state.raceModCHA = 0;
+		if(race == "Dragonborn"){
+			this.state.raceModSTR = 2;
+			this.state.raceModCHA = 1;
 		}
-		else{
-			return Math.floor((stat - 10) / 2);
+		else if(race == "Dwarf"){
+			this.state.raceModCON = 2;
 		}
+		else if(race == "Elf"){
+			this.state.raceModDEX = 2;
+		}
+		else if(race == "Halfing"){
+			this.state.raceModDEX = 2;
+		}
+		else if(race == "Human"){
+			this.state.raceModSTR = 1;
+			this.state.raceModDEX = 1;
+			this.state.raceModCON = 1;
+			this.state.raceModINT = 1;
+			this.state.raceModWIS = 1;
+			this.state.raceModCHA = 1;
+		}
+		else if(race == "Gnome"){
+			this.state.raceModINT = 2;
+		}
+		else if(race == "Half-ELf"){
+			this.state.raceModCHA = 2;
+			//! add point allocation (2 pts)
+		}
+		else if(race == "Half-Orc"){
+			this.state.raceModSTR = 2;
+			this.state.raceModCON = 1;
+		}
+		else if(race == "Tiefling"){
+			this.state.raceModCHA = 2;
+			this.state.raceModINT = 1;
+		}
+		this.state.totalSTR += this.state.raceModSTR;
+		this.state.totalDEX += this.state.raceModDEX;
+		this.state.totalCON += this.state.raceModCON;
+		this.state.totalINT += this.state.raceModINT;
+		this.state.totalWIS += this.state.raceModWIS;
+		this.state.totalCHA += this.state.raceModCHA;
 	}
-	createSkillList(skills){
-
+	applyClass(pickedClass){
+		this.state.classModSTR = 0;
+		this.state.classModDEX = 0;
+		this.state.classModCON = 0;
+		this.state.classModINT = 0;
+		this.state.classModWIS = 0;
+		this.state.classModCHA = 0;
+		this.state.totalSaveSTR = this.state.modSTR;
+		this.state.totalSaveDEX = this.state.modDEX;
+		this.state.totalSaveCON = this.state.modCON;
+		this.state.totalSaveINT = this.state.modINT;
+		this.state.totalSaveWIS = this.state.modWIS;
+		this.state.totalSaveCHA = this.state.modCHA;
+		if(pickedClass == "Barbarian"){
+			this.state.classModSTR = this.state.proficiency;
+			this.state.classModCON = this.state.proficiency;
+		}
+		else if(pickedClass == "Bard"){
+			this.state.classModDEX = this.state.proficiency;
+			this.state.classModCHA = this.state.proficiency;
+		}
+		else if(pickedClass == "Cleric"){
+			this.state.classModWIS = this.state.proficiency;
+			this.state.classModCHA = this.state.proficiency;
+		}
+		else if(pickedClass == "Druid"){
+			this.state.classModINT = this.state.proficiency;
+			this.state.classModWIS = this.state.proficiency;
+		}
+		else if(pickedClass == "Fighter"){
+			this.state.classModSTR = this.state.proficiency;
+			this.state.classModCON = this.state.proficiency;
+		}
+		else if(pickedClass == "Monk"){
+			this.state.classModSTR = this.state.proficiency;
+			this.state.classModDEX = this.state.proficiency;
+		}
+		else if(pickedClass == "Paladin"){
+			this.state.classModWIS = this.state.proficiency;
+			this.state.classModCHA = this.state.proficiency;
+		}
+		else if(pickedClass == "Ranger"){
+			this.state.classModSTR = this.state.proficiency;
+			this.state.classModDEX = this.state.proficiency;
+		}
+		else if(pickedClass == "Rogue"){
+			this.state.classModDEX = this.state.proficiency;
+			this.state.classModINT = this.state.proficiency;
+		}
+		else if(pickedClass == "Sorcerer"){
+			this.state.classModCON = this.state.proficiency;
+			this.state.classModCHA = this.state.proficiency;
+		}
+		else if(pickedClass == "Warlock"){
+			this.state.classModWIS = this.state.proficiency;
+			this.state.classModCHA = this.state.proficiency;
+		}
+		else if(pickedClass == "Wizard"){
+			this.state.classModINT = this.state.proficiency;
+			this.state.classModWIS = this.state.proficiency;
+		}
+		this.state.totalSaveSTR += this.state.classModSTR;
+		this.state.totalSaveDEX += this.state.classModDEX;
+		this.state.totalSaveCON += this.state.classModCON;
+		this.state.totalSaveINT += this.state.classModINT;
+		this.state.totalSaveWIS += this.state.classModWIS;
+		this.state.totalSaveCHA += this.state.classModCHA;
+	}
+	statCalc(base, race, other, stat){
+		let total = 0;
+		total = base + race + other;
+		if(stat == "str"){
+			this.state.totalSTR = total;
+		}
+		else if(stat == "dex"){
+			this.state.totalDEX = total;
+		}
+		else if(stat == "con"){
+			this.state.totalCON = total;
+		}
+		else if(stat == "int"){
+			this.state.totalINT = total;
+		}
+		else if(stat == "wis"){
+			this.state.totalWIS = total;
+		}
+		else if(stat == "cha"){
+			this.state.totalCHA = total;
+		}
+		return total;
+	}
+	calcMod(stat, statType){
+		let statVal = 0;
+		statVal = Math.floor((stat - 10) / 2);
+		if(statType == "str"){
+			this.state.modSTR = statVal;
+		}
+		else if(statType == "dex"){
+			this.state.modDEX = statVal;
+		}
+		else if(statType == "con"){
+			this.state.modCON = statVal;
+		}
+		else if(statType == "int"){
+			this.state.modINT = statVal;
+		}
+		else if(statType == "wis"){
+			this.state.modWIS = statVal;
+		}
+		else if(statType == "cha"){
+			this.state.modCHA = statVal;
+		}
+		return statVal;
+	}
+	calcSave(stat, statType){
+		let statVal;
 		
+	}
+	calcProf(){
+		let level = this.state.charLevel;
+		let prof = Math.ceil((level / 4)+1);
+		this.state.proficiency = prof;
+		return prof;
+	}
+	calcPerception(){
+		let val = 10 + this.state.skills.Perception.num;
+		console.log(this.state.skills.Perception.num);
+		return val;
+
 	}
 	render(){
 		return(
@@ -216,7 +438,7 @@ class NewNote extends React.Component{
 						<label htmlFor="charExperience" className="ILLabel">XP</label>
 					</div>
 					<div className="cRace ILGroup">
-						<select name="charRace" defaultValue="Choose Race" className="ILInput" ref={ref => this.charRace = ref} onChange={this.handleChange}>
+						<select name="charRace" onSelect={this.applyRace(this.state.charRace)} defaultValue="Choose Race" className="ILInput" ref={ref => this.charRace = ref} onChange={this.handleChange}>
 							<option value="Choose Race" disabled>Race</option>
 							<option value="Dragonborn">Dragonborn</option>
 							<option value="Dwarf">Dwarf</option>
@@ -231,7 +453,7 @@ class NewNote extends React.Component{
 						<label htmlFor="charRace" className="ILLabel">Race</label>
 					</div>
 					<div className="cClass ILGroup">
-						<select name="charClass" defaultValue="Class" className="ILInput" ref={ref => this.charClass = ref} onChange={this.handleChange}>
+						<select name="charClass" onSelect={this.applyClass(this.state.charClass)} defaultValue="Class" className="ILInput" ref={ref => this.charClass = ref} onChange={this.handleChange}>
 							<option value="Class" disabled>Class</option>
 							<option value="Barbarian">Barbarian</option>
 							<option value="Bard">Bard</option>
@@ -241,7 +463,7 @@ class NewNote extends React.Component{
 							<option value="Monk">Monk</option>
 							<option value="Paladin">Paladin</option>
 							<option value="Ranger">Ranger</option>
-							<option value="Rogue ">Rogue </option>
+							<option value="Rogue">Rogue </option>
 							<option value="Sorcerer">Sorcerer</option>
 							<option value="Warlock">Warlock</option>
 							<option value="Wizard">Wizard</option>
@@ -289,36 +511,133 @@ class NewNote extends React.Component{
 				<div id="">
 					<div></div>
 				</div>
+				<div id="charStats">
+					<div className="statGroup str">
+						<div className="statGroup--title">STR</div>
+						<input name="statSTR" type="text" placeholder="0" ref={ref => this.statSTR = ref} onChange={this.handleChange} autoComplete="off"/>
+						<div name="raceModSTR" ref={ref => this.raceModSTR = ref} onChange={this.handleChange}>
+							Race: {this.state.raceModSTR}
+						</div>
+						<div name="otheraceModSTR" ref={ref => this.otherModSTR = ref} onChange={this.handleChange}>
+							Other: {this.state.otherModSTR}
+						</div>
+						<div name="totalSTR" ref={ref => this.totalSTR = ref} onChange={this.handleChange}>
+							Total: {this.statCalc(this.state.statSTR, this.state.raceModSTR, this.state.otherModSTR, "str")}
+						</div>
+						<div name="modSTR" ref={ref => this.modSTR = ref} onChange={this.handleChange}>
+							Mod: {this.calcMod(this.state.totalSTR, "str")}
+						</div>
+					</div>
+
+					<div className="statGroup dex">
+						<div className="statGroup--title">DEX</div>
+						<input name="statDEX" type="text" placeholder="0" ref={ref => this.statDEX = ref} onChange={this.handleChange} autoComplete="off"/>
+						<div name="raceModDEX" ref={ref => this.raceModDEX = ref} onChange={this.handleChange}>
+							Race: {this.state.raceModDEX}
+						</div>
+						<div name="otheraceModDEX" ref={ref => this.otherModDEX = ref} onChange={this.handleChange}>
+							Other: {this.state.otherModDEX}
+						</div>
+						<div name="totalDEX" ref={ref => this.totalDEX = ref} onChange={this.handleChange}>
+							Total: {this.statCalc(this.state.statDEX, this.state.raceModDEX, this.state.otherModDEX, "dex")}
+						</div>
+						<div name="modDEX" ref={ref => this.modDEX = ref} onChange={this.handleChange}>
+							Mod: {this.calcMod(this.state.totalDEX, "dex")}
+						</div>
+					</div>
+
+					<div className="statGroup con">
+						<div className="statGroup--title">CON</div>
+						<input name="statCON" type="text" placeholder="0" ref={ref => this.statCON = ref} onChange={this.handleChange} autoComplete="off"/>
+						<div name="raceModCON" ref={ref => this.raceModCON = ref} onChange={this.handleChange}>
+							Race: {this.state.raceModCON}
+						</div>
+						<div name="otheraceModCON" ref={ref => this.otherModCON = ref} onChange={this.handleChange}>
+							Other: {this.state.otherModCON}
+						</div>
+						<div name="totalCON" ref={ref => this.totalCON = ref} onChange={this.handleChange}>
+							Total: {this.statCalc(this.state.statCON, this.state.raceModCON, this.state.otherModCON, "con")}
+						</div>
+						<div name="modCON" ref={ref => this.modCON = ref} onChange={this.handleChange}>
+							Mod: {this.calcMod(this.state.totalCON, "con")}
+						</div>
+					</div>
+
+					<div className="statGroup int">
+						<div className="statGroup--title">INT</div>
+						<input name="statINT" type="text" placeholder="0" ref={ref => this.statINT = ref} onChange={this.handleChange} autoComplete="off"/>
+						<div name="raceModINT" ref={ref => this.raceModINT = ref} onChange={this.handleChange}>
+							Race: {this.state.raceModINT}
+						</div>
+						<div name="otheraceModINT" ref={ref => this.otherModINT = ref} onChange={this.handleChange}>
+							Other: {this.state.otherModINT}
+						</div>
+						<div name="totalINT" ref={ref => this.totalINT = ref} onChange={this.handleChange}>
+							Total: {this.statCalc(this.state.statINT, this.state.raceModINT, this.state.otherModINT, "int")}
+						</div>
+						<div name="modINT" ref={ref => this.modINT = ref} onChange={this.handleChange}>
+							Mod: {this.calcMod(this.state.totalINT, "int")}
+						</div>
+					</div>
+
+					<div className="statGroup wis">
+						<div className="statGroup--title">WIS</div>
+						<input name="statWIS" type="text" placeholder="0" ref={ref => this.statWIS = ref} onChange={this.handleChange} autoComplete="off"/>
+						<div name="raceModWIS" ref={ref => this.raceModWIS = ref} onChange={this.handleChange}>
+							Race: {this.state.raceModWIS}
+						</div>
+						<div name="otheraceModWIS" ref={ref => this.otherModWIS = ref} onChange={this.handleChange}>
+							Other: {this.state.otherModWIS}
+						</div>
+						<div name="totalWIS" ref={ref => this.totalWIS = ref} onChange={this.handleChange}>
+							Total: {this.statCalc(this.state.statWIS, this.state.raceModWIS, this.state.otherModWIS, "wis")}
+						</div>
+						<div name="modWIS" ref={ref => this.modWIS = ref} onChange={this.handleChange}>
+							Mod: {this.calcMod(this.state.totalWIS, "wis")}
+						</div>
+					</div>
+
+					<div className="statGroup cha">
+						<div className="statGroup--title">CHA</div>
+						<input name="statCHA" type="text" placeholder="0" ref={ref => this.statCHA = ref} onChange={this.handleChange} autoComplete="off"/>
+						<div name="raceModCHA" ref={ref => this.raceModCHA = ref} onChange={this.handleChange}>
+							Race: {this.state.raceModCHA}
+						</div>
+						<div name="otheraceModCHA" ref={ref => this.otherModCHA = ref} onChange={this.handleChange}>
+							Other: {this.state.otherModCHA}
+						</div>
+						<div name="totalCHA" ref={ref => this.totalCHA = ref} onChange={this.handleChange}>
+							Total: {this.statCalc(this.state.statCHA, this.state.raceModCHA, this.state.otherModCHA, "cha")}
+						</div>
+						<div name="modCHA" ref={ref => this.modCHA = ref} onChange={this.handleChange}>
+							Mod: {this.calcMod(this.state.totalCHA, "cha")}
+						</div>
+					</div>
+				</div>
+
 				<div id="savingThrows">
 					<ul>
-						<li><label htmlFor="saveStr">STR</label><input name="saveStr"  ref={ref => this.saveSTR = ref} value={this.calcMod(this.state.statSTR)} onChange={this.handleChange}></input></li>
-						<li><label htmlFor="saveDex">DEX</label><input name="saveDex"  ref={ref => this.saveDEX = ref} value={this.calcMod(this.state.statDEX)} onChange={this.handleChange}></input></li>
-						<li><label htmlFor="saveCon">CON</label><input name="saveCon"  ref={ref => this.saveCON = ref} value={this.calcMod(this.state.statCON)} onChange={this.handleChange}></input></li>
-						<li><label htmlFor="saveInt">INT</label><input name="saveInt"  ref={ref => this.saveINT = ref} value={this.calcMod(this.state.statINT)} onChange={this.handleChange}></input></li>
-						<li><label htmlFor="saveWis">WIS</label><input name="saveWis"  ref={ref => this.saveWIS = ref} value={this.calcMod(this.state.statWIS)} onChange={this.handleChange}></input></li>
-						<li><label htmlFor="saveCha">CHA</label><input name="saveCha"  ref={ref => this.saveCHA = ref} value={this.calcMod(this.state.statCHA)} onChange={this.handleChange}></input></li>
+						<li><label htmlFor="saveStr">STR</label>
+						<div name="saveStr" onChange={this.handleChange}>{this.state.totalSaveSTR}</div></li>
+						<li><label htmlFor="saveDex">DEX</label>
+						<div name="saveDex" onChange={this.handleChange}>{this.state.totalSaveDEX}</div></li>
+						<li><label htmlFor="saveCon">CON</label>
+						<div name="saveCon" onChange={this.handleChange}>{this.state.totalSaveCON}</div></li>
+						<li><label htmlFor="saveInt">INT</label>
+						<div name="saveInt" onChange={this.handleChange}>{this.state.totalSaveINT}</div></li>
+						<li><label htmlFor="saveWis">WIS</label>
+						<div name="saveWis" onChange={this.handleChange}>{this.state.totalSaveWIS}</div></li>
+						<li><label htmlFor="saveCha">CHA</label>
+						<div name="saveCha" onChange={this.handleChange}>{this.state.totalSaveCHA}</div></li>
 					</ul>
 				</div>
-				<div id="charStats">
-					<label htmlFor="statStr">STR</label>
-					<label htmlFor="statDex">DEX</label>
-					<label htmlFor="statCon">CON</label>
-					<label htmlFor="statInt">INT</label>
-					<label htmlFor="statWis">WIS</label>
-					<label htmlFor="statCha">CHA</label>
-					<input id="statStr" name="statSTR" type="text" placeholder="0" ref={ref => this.statSTR = ref} onChange={this.handleChange} autoComplete="off"/>
-					<input id="statDex" name="statDEX" type="text" placeholder="0" ref={ref => this.statDEX = ref} onChange={this.handleChange} autoComplete="off"/>
-					<input id="statCon" name="statCON" type="text" placeholder="0" ref={ref => this.statCON = ref} onChange={this.handleChange} autoComplete="off"/>
-					<input id="statInt" name="statINT" type="text" placeholder="0" ref={ref => this.statINT = ref} onChange={this.handleChange} autoComplete="off"/>
-					<input id="statWis" name="statWIS" type="text" placeholder="0" ref={ref => this.statWIS = ref} onChange={this.handleChange} autoComplete="off"/>
-					<input id="statCha" name="statCHA" type="text" placeholder="0" ref={ref => this.statCHA = ref} onChange={this.handleChange} autoComplete="off"/>
-					<div className="statMod" id="modStr" ref={ref => this.modSTR = ref} onChange={this.handleChange}>{this.calcMod(this.state.statSTR)}</div>
-					<div className="statMod" id="modDex" ref={ref => this.modDEX = ref} onChange={this.handleChange}>{this.calcMod(this.state.statDEX)}</div>
-					<div className="statMod" id="modCon" ref={ref => this.modCON = ref} onChange={this.handleChange}>{this.calcMod(this.state.statCON)}</div>
-					<div className="statMod" id="modInt" ref={ref => this.modINT = ref} onChange={this.handleChange}>{this.calcMod(this.state.statINT)}</div>
-					<div className="statMod" id="modWis" ref={ref => this.modWIS = ref} onChange={this.handleChange}>{this.calcMod(this.state.statWIS)}</div>
-					<div className="statMod" id="modCha" ref={ref => this.modCHA = ref} onChange={this.handleChange}>{this.calcMod(this.state.statCHA)}</div>
-				</div>
+
+				<div className="soloStat proficiency" onChange={this.handleChange}>Proficiency: {this.calcProf()}</div>
+
+				<div className="soloStat inspiration" onChange={this.handleChange}>Proficiency: {this.calcProf()}</div>
+
+				<div className="soloStat passivePerception" onChange={this.handleChange}>Passive Perception: {this.calcPerception()}</div>
+
 				<div id="skillsPanel">
 					<label className="skillsPanelLabel" htmlFor="skillsTitle">Skills</label><input name="skillsTitle" type="checkbox" id="skillsTitle"/>
 					<div id="charSkills">
@@ -367,7 +686,7 @@ class NewNote extends React.Component{
 						<label htmlFor="skillNature">{this.state.skills.Nature.name}&nbsp;<span className="skillType">({this.state.skills.Nature.stat[1]})</span></label>
 					</div>
 					<div className="skillGroup">
-						<div name="skillPerception" className="charSkills--skill" ref={ref => this.state.skills.Perception.num = ref} onChange={this.handleChange}>{this.calcMod(this.state.statWIS)}</div>
+						<div name="skillPerception" className="charSkills--skill" onChange={this.handleChange}>{this.calcMod(this.state.statWIS)}</div>
 						<label htmlFor="skillPerception">{this.state.skills.Perception.name}&nbsp;<span className="skillType">({this.state.skills.Perception.stat[1]})</span></label>
 					</div>
 					<div className="skillGroup">

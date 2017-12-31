@@ -96,12 +96,12 @@ class App extends React.Component {
 		this.props.router.push(`/edit/${editKey}`);
 	}
 	calcMod(stat){
-		if(stat <= 0 || stat == null || stat == ""){
-			return 0;
+		if(stat >= 0){
+			return Math.floor((stat - 10) / 2);
 		}
 		else{
-			return Math.floor((stat - 10) / 2);
-		};
+			return 0;
+		}
 	}
 	render(){
 		let content = "";

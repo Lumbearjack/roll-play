@@ -308,45 +308,37 @@ header{
 		// display:block !important;
 	}
 }
+#charStats-b{
+	display:none;
+}
 #charStats{
 	display:grid;
 	grid-template-columns: repeat(6, 1fr);
 	grid-template-rows: auto auto auto;
 	grid-column-gap: 6px;
-	max-height:102px;
 	margin-bottom:0.5rem;
-	label, input, .statMod, .statVal{
-		position:relative;
+	.statGroup{
+		border:2px solid $monoDarker;
+		border-top-left-radius: 8px;
+		border-top-right-radius: 8px;
+		border-bottom-left-radius: 8px;
+		border-bottom-right-radius: 8px;
 		text-align: center;
+		input{
+			border:none;
+			text-align: center;
+			font-size:1.2rem;
+			border:1px solid $monoMid;
+			border-radius:4px;
+			margin:0.5rem;
+			padding: 0;
+			width: calc(100% - 1rem);
+		}
 	}
-	label{
-		// margin-top:0.75rem;
-		z-index:1;
-		color:$monoLightest;
-		padding:2px;
+	.statGroup--title{
 		background: $monoDarker;
-		// border-top-left-radius: 1px;
-		// border-top-right-radius: 1px;
-	}
-	input, .statVal{
-		z-index:0;
-		border: 2px solid $monoDarker;
-		border-radius:8px;
-		padding-top:1rem;
-		padding-bottom:1rem;
-		top:-10px;
-		background:none;
-	}
-	.statMod{
-		top: -25px;
-		color: $monoDarker;
-		background:white;
-		padding:0.2rem 0.3rem;;
-		border: 2px solid $monoDarker;
-		border-radius:14px;
-		width:66%;
-		margin:auto;
-		font-size:1.1rem;
+		color:$monoLightest;
+		padding-bottom:2px;
 	}
 }
 #noteItem{
@@ -651,31 +643,27 @@ header{
 		grid-template-columns: repeat(6, 1fr);
 		grid-template-rows: auto auto auto;
 		grid-column-gap: 6px;
+		margin-bottom: 1rem;
 		li{
 			display:inline-block;
-			border:2px solid $monoDarker;
-			border-bottom-left-radius: 0px;
-			border-bottom-right-radius: 0px;
-			border-top-left-radius: 8px;
-			border-top-right-radius: 8px;
 			margin:0;
 			text-align: center;
+			border: 2px solid $monoDarker;
+			border-radius: 8px;
 			&:last-child{
 				margin-right:0;
 			}
 			label{
-				
 				color: $monoLightest;
 				display:block;
 				background: $monoDarker;
 				display:none;
 			}
-			input{
+			div{
 				background:transparent;
-				border:none;
-				outline:none;
 				text-align: center;
-				font-size:1.5rem;
+				font-size:1.2rem;
+				padding:0.3rem;
 				line-height:100%;
 			}
 		}
