@@ -418,7 +418,7 @@ class NewNote extends React.Component{
 	}
 	calcPerception(){
 		let val = 10 + this.state.skills.Perception.num;
-		console.log(this.state.skills.Perception.num);
+		
 		return val;
 
 	}
@@ -634,7 +634,7 @@ class NewNote extends React.Component{
 
 				<div className="soloStat proficiency" onChange={this.handleChange}>Proficiency: {this.calcProf()}</div>
 
-				<div className="soloStat inspiration" onChange={this.handleChange}>Proficiency: {this.calcProf()}</div>
+				<div className="soloStat inspiration" onChange={this.handleChange}>Inspiration: 0</div>
 
 				<div className="soloStat passivePerception" onChange={this.handleChange}>Passive Perception: {this.calcPerception()}</div>
 
