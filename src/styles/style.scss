@@ -12,7 +12,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 	font-family: "moria", serif;
 	src: url('../../assets/moria.ttf');
 }
-
+ 
 /* Edit/ Add notes only messes up when window width is not forcing width change on textarea*/
 
 	$monoDarkest: #0E0E0E;
@@ -669,8 +669,23 @@ header{
 		}
 	}
 }
+
 .soloStat{
 	display:inline-block;
+	padding-right: 1rem;
+	border-right: 2px solid $monoDarker;
+	margin-right: 1rem;
+}
+.proficiencyetc{
+	margin-bottom:1rem;
+	div:last-child{
+		border:none;
+		margin:0;
+	}
+}
+.totalStat{
+	font-weight:700;
+	font-size:1.2rem;
 }
 #skillsPanel{
 	position: relative;
